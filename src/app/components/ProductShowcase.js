@@ -1,4 +1,3 @@
-// components/ProductGrid.tsx
 import Image from "next/image";
 
 const products = [

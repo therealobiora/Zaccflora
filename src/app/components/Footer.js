@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="grid gap-10 py-12 md:py-16 lg:grid-cols-3 lg:gap-12">
           {/* Brand / Logo column */}
           <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
-            <Link href="/" className="inline-block mb-4">
+            <a href="/" className="inline-block mb-4">
               <Image
                 src="/images/logo.png"
                 alt="MyShroomWall"
@@ -20,7 +20,7 @@ export default function Footer() {
                 className="h-10 md:h-12 w-auto object-contain"
                 priority
               />
-            </Link>
+            </a>
             <p className="text-sm md:text-base leading-relaxed max-w-md opacity-90">
               Natural psychedelic wellness — carefully sourced mushroom-inspired
               products for clarity, creativity, and conscious living.
@@ -34,52 +34,52 @@ export default function Footer() {
             </h3>
             <ul className="mt-4 space-y-2 text-sm md:text-base">
               <li>
-                <Link
+                <a
                   href="#menu"
                   className="hover:text-[#27ae60] transition-colors"
                 >
                   Menu
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   href="#about"
                   className="hover:text-[#27ae60] transition-colors"
                 >
                   About
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   href="#contact"
                   className="hover:text-[#27ae60] transition-colors"
                 >
                   Contact
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   href="#contact"
                   className="hover:text-[#27ae60] transition-colors"
                 >
                   FAQ
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   href="#testimonials"
                   className="hover:text-[#27ae60] transition-colors"
                 >
                   Reviews
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   href="#testimonials"
                   className="hover:text-[#27ae60] transition-colors"
                 >
                   Testimonials
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -90,13 +90,21 @@ export default function Footer() {
               Connect
             </h3>
             <div className="mt-4 flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-8 text-sm md:text-base">
-              <Link href="#" className="hover:text-[#27ae60] transition-colors">
+              <Link
+                href="https://t.me/myshroomwall"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#27ae60] transition-colors"
+              >
                 Telegram
               </Link>
               <Link href="#" className="hover:text-[#27ae60] transition-colors">
                 Whatsapp
               </Link>
-              <Link href="#" className="hover:text-[#27ae60] transition-colors">
+              <Link
+                href="mailto:myshroomwall@gmail.com"
+                className="hover:text-[#27ae60] transition-colors"
+              >
                 Email
               </Link>
             </div>

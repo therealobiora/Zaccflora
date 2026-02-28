@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -32,8 +31,8 @@ export default function Hero() {
           </p>
 
           {/* CTA Button */}
-          <Link
-            href="#contact" // ← changed to a more logical path (update if needed)
+          <a
+            href="#contact"
             className="
               mt-4 sm:mt-6 inline-flex items-center justify-center
               rounded-full bg-[#27ae60] px-7 sm:px-10 py-3.5 sm:py-4
@@ -43,7 +42,7 @@ export default function Hero() {
             "
           >
             Shop Now
-          </Link>
+          </a>
         </div>
       </div>
     </section>

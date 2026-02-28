@@ -6,6 +6,7 @@
 
 html {
   font-family: var(--font-delius);
+  scroll-behavior: smooth;
 }
 
 body {

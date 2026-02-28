@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -10,44 +9,38 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full bg-[#27ae60] shadow-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo - increased size */}
-        <Link href="/" className="flex items-center shrink-0">
+        <a href="/" className="flex items-center shrink-0">
           <img
             src="/images/logo.png"
             alt="MyShroomWall - Natural wellness with mushrooms"
             className="h-11 w-auto md:h-14 lg:h-16 object-contain" // ← larger on desktop
           />
-        </Link>
+        </a>
 
         {/* Desktop Navigation - centered in middle */}
         <div className="hidden md:flex flex-1 justify-center items-center">
           <nav className="flex items-center gap-8 lg:gap-10 text-white font-medium">
-            <Link href="/" className="hover:text-white/80 transition-colors">
+            <a href="/" className="hover:text-white/80 transition-colors">
               Home
-            </Link>
-            <Link
-              href="#about"
-              className="hover:text-white/80 transition-colors"
-            >
+            </a>
+            <a href="#about" className="hover:text-white/80 transition-colors">
               About
-            </Link>
-            <Link
-              href="#menu"
-              className="hover:text-white/80 transition-colors"
-            >
+            </a>
+            <a href="#menu" className="hover:text-white/80 transition-colors">
               Menu
-            </Link>
-            <Link
+            </a>
+            <a
               href="#contact"
               className="hover:text-white/80 transition-colors"
             >
               Contact
-            </Link>
+            </a>
           </nav>
         </div>
 
         {/* Desktop CTA - right side */}
         <div className="hidden md:flex items-center shrink-0">
-          <Link
+          <a
             href="#contact" // or "/shop"
             className="
               rounded-xl bg-white px-6 py-2.5 text-sm font-semibold
@@ -56,7 +49,7 @@ export default function Navbar() {
             "
           >
             Shop Now
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Hamburger */}
@@ -93,36 +86,36 @@ export default function Navbar() {
         `}
       >
         <nav className="flex flex-col items-center gap-6 py-6 px-4 text-white font-medium">
-          <Link
+          <a
             href="/"
             className="hover:text-white/80 transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             Home
-          </Link>
-          <Link
+          </a>
+          <a
             href="#about"
             className="hover:text-white/80 transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             About
-          </Link>
-          <Link
+          </a>
+          <a
             href="#menu"
             className="hover:text-white/80 transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             Menu
-          </Link>
-          <Link
+          </a>
+          <a
             href="#contact"
             className="hover:text-white/80 transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             Contact
-          </Link>
+          </a>
 
-          <Link
+          <a
             href="#contact"
             className="
               mt-4 w-full max-w-xs text-center rounded-xl bg-white px-8 py-3.5
@@ -132,7 +125,7 @@ export default function Navbar() {
             onClick={() => setIsMenuOpen(false)}
           >
             Shop Now
-          </Link>
+          </a>
         </nav>
       </div>
     </header>

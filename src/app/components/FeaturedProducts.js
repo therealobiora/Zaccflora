@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 const products = [
   {
@@ -80,7 +79,7 @@ export default function FeaturedProducts() {
                   {product.description}
                 </p>
 
-                <Link
+                <a
                   href="#contact"
                   className="
         mt-auto inline-flex items-center justify-center
@@ -92,7 +91,7 @@ export default function FeaturedProducts() {
       "
                 >
                   Buy Now
-                </Link>
+                </a>
               </figcaption>
             </figure>
           ))}

@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+:root {
+  --font-delius: "Delius", system-ui, sans-serif;
+}
+
+html {
+  font-family: var(--font-delius);
+}
+
+body {
+  font-family: var(--font-delius);
+}

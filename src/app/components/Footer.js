@@ -59,7 +59,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#faq"
+                  href="#contact"
                   className="hover:text-[#27ae60] transition-colors"
                 >
                   FAQ
@@ -67,7 +67,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#reviews"
+                  href="#testimonials"
                   className="hover:text-[#27ae60] transition-colors"
                 >
                   Reviews
@@ -94,7 +94,7 @@ export default function Footer() {
                 Telegram
               </Link>
               <Link href="#" className="hover:text-[#27ae60] transition-colors">
-                Instagram
+                Whatsapp
               </Link>
               <Link href="#" className="hover:text-[#27ae60] transition-colors">
                 Email

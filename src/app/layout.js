@@ -1,29 +1,5 @@
-import { Poppins, Montserrat, Nunito_Sans, Delius } from "next/font/google";
+import { Delius } from "next/font/google";
 import "./globals.css";
-
-// const poppins = Poppins({
-//   subsets: ["latin"],
-//   weight: ["300", "400", "500", "600", "700"],
-//   style: ["normal", "italic"],
-//   variable: "--font-poppins",
-//   display: "swap",
-// });
-
-// const nunitoSans = Nunito_Sans({
-//   subsets: ["latin"],
-//   weight: ["300", "400", "500", "600", "700"],
-//   style: ["normal", "italic"],
-//   variable: "--font-nunito-sans",
-//   display: "swap",
-// });
-
-// const montserrat = Montserrat({
-//   subsets: ["latin"],
-//   weight: ["300", "400", "500", "600", "700"],
-//   style: ["normal", "italic"],
-//   variable: "--font-montserrat",
-//   display: "swap",
-// });
 
 const delius = Delius({
   subsets: ["latin"],
@@ -36,6 +12,9 @@ const delius = Delius({
 export const metadata = {
   title: "MyShroomWall",
   description: "Natural wellness with mushrooms",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({ children }) {

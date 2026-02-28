@@ -1,4 +1,3 @@
-// components/AboutUs.tsx
 import Image from "next/image";
 
 export default function AboutUs() {
@@ -26,7 +25,7 @@ export default function AboutUs() {
           <div className="order-1 lg:order-2">
             <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-4/3">
               <Image
-                src="/images/wallhero3.jpg" // ← replace with your image (or use one from earlier search)
+                src="/images/wallhero3.jpg"
                 alt="Mushroom wellness"
                 fill
                 className="object-cover"

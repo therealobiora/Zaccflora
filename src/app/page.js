@@ -1,6 +1,5 @@
 "use client";
 
-import Head from "next/head";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import ProductShowcase from "./components/ProductShowcase";
@@ -15,13 +14,6 @@ import SectionReveal from "./components/SectionReveal";
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>MyShroomWall</title>
-        <meta name="description" content="Natural wellness with mushrooms" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/images/logo.png" />
-      </Head>
-
       <Navbar />
 
       <Hero />

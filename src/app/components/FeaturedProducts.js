@@ -6,43 +6,37 @@ const products = [
     name: "Golden Teacher",
     description: "Associated with reflection and inner awareness.",
     imageSrc: "/images/Golden.jpg",
-    socialLink: "https://t.me/myshroomwall",
   },
   {
     name: "Penis Envy",
     description: "Known for deep reflection and inner insight.",
     imageSrc: "/images/PENISENVY.jpg",
-    socialLink: "https://t.me/myshroomwall",
   },
   {
     name: "Microdose Capsules",
     description: "Convenient, pre-measured capsules for easy use.",
     imageSrc: "/images/Micro.jpg",
-    socialLink: "https://t.me/myshroomwall",
   },
   {
     name: "DMT VAPE",
     description: "Portable and ready-to-use format.",
     imageSrc: "/images/DMTVAPE.jpg",
-    socialLink: "https://t.me/myshroomwall",
   },
   {
     name: "DMT",
     description: "Pure crystalline form for experienced users.",
     imageSrc: "/images/DMT.png",
-    socialLink: "https://t.me/myshroomwall",
   },
   {
     name: "LSD",
     description: "Create moments that encourage reflection and connection.",
     imageSrc: "/images/LSD.jpg",
-    socialLink: "https://t.me/myshroomwall",
   },
 ];
 
 export default function FeaturedProducts() {
   return (
-    <section className="py-15 md:py-12 lg:py-12 bg-white">
+    <section id="menu" className="py-15 md:py-12 lg:py-12 bg-white">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Section heading */}
         <div className="text-center mb-12 md:mb-15">
@@ -87,9 +81,7 @@ export default function FeaturedProducts() {
                 </p>
 
                 <Link
-                  href={product.socialLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#contact"
                   className="
         mt-auto inline-flex items-center justify-center
         rounded-full bg-[#27ae60] px-7 py-3

@@ -33,7 +33,7 @@ export default function Hero() {
 
           {/* CTA Button */}
           <Link
-            href="/shop" // ← changed to a more logical path (update if needed)
+            href="#contact" // ← changed to a more logical path (update if needed)
             className="
               mt-4 sm:mt-6 inline-flex items-center justify-center
               rounded-full bg-[#27ae60] px-7 sm:px-10 py-3.5 sm:py-4

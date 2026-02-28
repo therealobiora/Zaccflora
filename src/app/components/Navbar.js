@@ -21,10 +21,7 @@ export default function Navbar() {
         {/* Desktop Navigation - centered in middle */}
         <div className="hidden md:flex flex-1 justify-center items-center">
           <nav className="flex items-center gap-8 lg:gap-10 text-white font-medium">
-            <Link
-              href="#home"
-              className="hover:text-white/80 transition-colors"
-            >
+            <Link href="/" className="hover:text-white/80 transition-colors">
               Home
             </Link>
             <Link
@@ -97,7 +94,7 @@ export default function Navbar() {
       >
         <nav className="flex flex-col items-center gap-6 py-6 px-4 text-white font-medium">
           <Link
-            href="#home"
+            href="/"
             className="hover:text-white/80 transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >

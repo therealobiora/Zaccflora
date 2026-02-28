@@ -28,7 +28,10 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-16 md:py-16 bg-white overflow-hidden">
+    <section
+      id="testimonials"
+      className="py-16 md:py-16 bg-white overflow-hidden"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-12 md:mb-16">
           What Our Community Says

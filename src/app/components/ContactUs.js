@@ -33,7 +33,7 @@ export default function ContactUs() {
 
             {/* Whatsapp */}
             <a
-              href="https://instagram.com/yourhandle"
+              href="https://wa.me/18583740774"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex flex-col items-center gap-3 transition-transform hover:-translate-y-1"

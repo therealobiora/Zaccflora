@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+
 const testimonials = [
   {
     name: "Emma Thompson",
@@ -27,69 +32,89 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const containerRef = useRef(null);
+
+  // autoplay
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => prev + 1);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  // infinite reset (smooth loop)
+  useEffect(() => {
+    if (currentIndex >= testimonials.length) {
+      setCurrentIndex(0);
+    }
+  }, [currentIndex]);
+
   return (
     <section
-      id="testimonials"
-      className="py-16 md:py-16 bg-white overflow-hidden"
+      className="py-12 md:py-16 bg-white overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setTimeout(() => setIsPaused(false), 2000)}
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-12 md:mb-16">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-10 md:mb-12">
           What Our Community Says
         </h2>
 
-        <div className="relative">
-          <div className="overflow-hidden">
-            <div
-              className="flex animate-slide gap-5 sm:gap-6 md:gap-8"
-              style={{ willChange: "transform" }}
-            >
-              {[...testimonials, ...testimonials, ...testimonials].map(
-                (t, i) => (
-                  <div
-                    key={i}
-                    className={`
-  min-w-40 sm:min-w-85 md:min-w-95
-  h-50 sm:h-50 md:h-60
-  bg-gray-50 p-6 sm:p-8 rounded-2xl
-  shadow-md border border-gray-100 shrink-0
-  flex flex-col justify-between
-`}
-                  >
-                    <p className="text-gray-700 text-base sm:text-lg md:text-xl italic mb-5 md:mb-6 leading-relaxed">
-                      "{t.text}"
-                    </p>
-                    <div>
-                      <p className="font-semibold text-gray-900 text-base md:text-lg">
-                        {t.name}
-                      </p>
-                      <p className="text-gray-500 text-sm md:text-base">
-                        {t.role}
-                      </p>
-                    </div>
-                  </div>
-                ),
-              )}
-            </div>
-          </div>
+        <div className="relative overflow-hidden">
+          {/* gradient fade edges */}
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-linear-to-r from-white to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-linear-to-l from-white to-transparent z-10" />
+
+          <motion.div
+            ref={containerRef}
+            className="flex gap-4 sm:gap-5 md:gap-6"
+            animate={{ x: `-${currentIndex * 320}px` }}
+            transition={{
+              ease: "easeInOut",
+              duration: 0.7,
+            }}
+          >
+            {[...testimonials, ...testimonials, ...testimonials].map((t, i) => (
+              <motion.div
+                key={i}
+                className="
+                    shrink-0
+                    w-65 sm:w-70 md:w-75
+                    bg-gray-50
+                    p-5 sm:p-6
+                    rounded-xl
+                    shadow-sm
+                    border border-gray-100
+                    flex flex-col justify-between
+                  "
+                whileHover={{
+                  y: -6,
+                  scale: 1.02,
+                }}
+                transition={{ duration: 0.25 }}
+              >
+                <p className="text-gray-700 text-sm sm:text-base italic leading-relaxed mb-4 line-clamp-5">
+                  "{t.text}"
+                </p>
+
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm sm:text-base">
+                    {t.name}
+                  </p>
+                  <p className="text-gray-500 text-xs sm:text-sm">{t.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes slide {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-33.333%);
-          } /* changed from -50% because we tripled content */
-        }
-        .animate-slide {
-          animation: slide 15s linear infinite; /* slower for readability - adjust to 25s-45s as you like */
-        }
-        .group:hover .animate-slide {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   );
 }

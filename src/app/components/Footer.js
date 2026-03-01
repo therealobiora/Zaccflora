@@ -1,6 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -27,10 +25,10 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick as */}
           <div className="text-center lg:text-left">
             <h3 className="text-lg font-semibold text-gray-900 md:text-xl">
-              Quick Links
+              Quick as
             </h3>
             <ul className="mt-4 space-y-2 text-sm md:text-base">
               <li>
@@ -90,23 +88,30 @@ export default function Footer() {
               Connect
             </h3>
             <div className="mt-4 flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-8 text-sm md:text-base">
-              <Link
+              <a
                 href="https://t.me/myshroomwall"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#27ae60] transition-colors"
               >
                 Telegram
-              </Link>
-              <Link href="#" className="hover:text-[#27ae60] transition-colors">
+              </a>
+              <a
+                href="https://wa.me/18583740774"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#27ae60] transition-colors"
+              >
                 Whatsapp
-              </Link>
-              <Link
+              </a>
+              <a
                 href="mailto:myshroomwall@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-[#27ae60] transition-colors"
               >
                 Email
-              </Link>
+              </a>
             </div>
           </div>
         </div>

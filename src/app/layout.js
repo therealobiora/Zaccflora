@@ -12,7 +12,7 @@ const delius = Delius({
 export const metadata = {
   title: "MyShroomWall",
   description: "Natural wellness with mushrooms",
-  verifications: {
+  verification: {
     google: "vS1O-glZ03qI4ht4uQqAnudvFyv_ip9iSPF3nBZtdvs",
   },
   icons: {

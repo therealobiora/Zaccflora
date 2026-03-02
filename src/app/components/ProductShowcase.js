@@ -40,11 +40,11 @@ export default function ProductShowcase() {
               {/* Circle – smaller on mobile, grows on larger screens */}
               <div
                 className="
-                relative w-20 h-20           /* mobile (~320–480px) */
-                xs:w-24 xs:h-24              /* very small tablets / landscape phones */
-                sm:w-32 sm:h-32              /* ≥640px */
-                md:w-40 md:h-40              /* ≥768px */
-                lg:w-44 lg:h-44              /* ≥1024px */
+                relative w-20 h-20
+                xs:w-24 xs:h-24              
+                sm:w-32 sm:h-32              
+                md:w-40 md:h-40              
+                lg:w-44 lg:h-44           
                 mb-2 sm:mb-3 md:mb-4
                 overflow-hidden rounded-full
                 border-2 border-gray-200

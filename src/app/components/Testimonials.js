@@ -34,20 +34,43 @@ const testimonials = [
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const containerRef = useRef(null);
+  const [cardWidth, setCardWidth] = useState(0);
 
-  // autoplay
+  const containerRef = useRef(null);
+  const cardRef = useRef(null);
+
+  /* ------------------------------
+     Measure card width (FIX MOBILE)
+  ------------------------------ */
   useEffect(() => {
-    if (isPaused) return;
+    const measure = () => {
+      if (cardRef.current) {
+        const gap = 24; // matches md:gap-6
+        setCardWidth(cardRef.current.offsetWidth + gap);
+      }
+    };
+
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  /* ------------------------------
+     Autoplay
+  ------------------------------ */
+  useEffect(() => {
+    if (isPaused || !cardWidth) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => prev + 1);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused, cardWidth]);
 
-  // infinite reset (smooth loop)
+  /* ------------------------------
+     Infinite loop reset
+  ------------------------------ */
   useEffect(() => {
     if (currentIndex >= testimonials.length) {
       setCurrentIndex(0);
@@ -68,14 +91,16 @@ export default function Testimonials() {
         </h2>
 
         <div className="relative overflow-hidden">
-          {/* gradient fade edges */}
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-linear-to-r from-white to-transparent z-10" />
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-linear-to-l from-white to-transparent z-10" />
+          {/* edge fade */}
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-12 bg-linear-to-r from-white to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-12 bg-linear-to-l from-white to-transparent z-10" />
 
           <motion.div
             ref={containerRef}
             className="flex gap-4 sm:gap-5 md:gap-6"
-            animate={{ x: `-${currentIndex * 320}px` }}
+            animate={{
+              x: -(currentIndex * cardWidth),
+            }}
             transition={{
               ease: "easeInOut",
               duration: 0.7,
@@ -83,10 +108,13 @@ export default function Testimonials() {
           >
             {[...testimonials, ...testimonials, ...testimonials].map((t, i) => (
               <motion.div
+                ref={i === 0 ? cardRef : null}
                 key={i}
                 className="
                     shrink-0
-                    w-65 sm:w-70 md:w-75
+                    w-full
+                    sm:w-70
+                    md:w-75
                     bg-gray-50
                     p-5 sm:p-6
                     rounded-xl
@@ -100,7 +128,7 @@ export default function Testimonials() {
                 }}
                 transition={{ duration: 0.25 }}
               >
-                <p className="text-gray-700 text-sm sm:text-base italic leading-relaxed mb-4 line-clamp-5">
+                <p className="text-gray-700 text-sm sm:text-base italic leading-relaxed mb-4">
                   "{t.text}"
                 </p>
 

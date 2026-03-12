@@ -89,7 +89,7 @@ export default function Footer() {
             </h3>
             <div className="mt-4 flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-8 text-sm md:text-base">
               <a
-                href="https://t.me/myshroomwall"
+                href="https://t.me/zaccflora"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#27ae60] transition-colors"
@@ -105,7 +105,7 @@ export default function Footer() {
                 Whatsapp
               </a>
               <a
-                href="mailto:myshroomwall@gmail.com"
+                href="mailto:zaccflora@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#27ae60] transition-colors"

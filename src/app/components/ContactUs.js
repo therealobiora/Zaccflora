@@ -18,7 +18,7 @@ export default function ContactUs() {
           <div className="flex flex-wrap justify-center gap-8 md:gap-12 lg:gap-16">
             {/* Telegram */}
             <a
-              href="https://t.me/myshroomwall"
+              href="https://t.me/zaccflora"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex flex-col items-center gap-3 transition-transform hover:-translate-y-1"
@@ -48,7 +48,7 @@ export default function ContactUs() {
 
             {/* Email */}
             <a
-              href="mailto:myshroomwall@gmail.com"
+              href="mailto:zaccflora@gmail.com"
               className="group flex flex-col items-center gap-3 transition-transform hover:-translate-y-1"
             >
               <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#27ae60]/10 flex items-center justify-center group-hover:bg-[#27ae60]/20 transition-colors">

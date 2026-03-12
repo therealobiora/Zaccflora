@@ -7,10 +7,10 @@ export default function AboutUs() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="order-2 lg:order-1">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              About MyShroomWall
+              About Zaccflora
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              At MyShroomWall, we believe in the transformative power of nature.
+              At Zaccflora, we believe in the transformative power of nature.
               Our mission is to provide premium, responsibly sourced
               mushroom-based wellness products that support mental clarity,
               creativity, and conscious living.

@@ -21,7 +21,7 @@ export default function Hero() {
         <div className="w-full max-w-5xl text-center text-white flex flex-col items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 py-12 md:py-16 lg:py-20">
           {/* Headline */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-            Natural Psychedelic Wellness, Redefined
+            Natural Psychedelic Wellness, Redefined.
           </h1>
 
           {/* Subheadline */}

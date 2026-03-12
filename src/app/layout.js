@@ -10,11 +10,8 @@ const delius = Delius({
 });
 
 export const metadata = {
-  title: "MyShroomWall",
+  title: "Zaccflora",
   description: "Natural wellness with mushrooms",
-  verification: {
-    google: "vS1O-glZ03qI4ht4uQqAnudvFyv_ip9iSPF3nBZtdvs",
-  },
   icons: {
     icon: "/icon.png",
   },

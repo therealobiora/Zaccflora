@@ -118,7 +118,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-gray-200 py-6 text-center text-sm text-gray-500">
-          <p>© {currentYear} MyShroomWall. All rights reserved.</p>
+          <p>© {currentYear} Zaccflora. All rights reserved.</p>
         </div>
       </div>
     </footer>

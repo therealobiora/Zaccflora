@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
             <a href="/" className="inline-block mb-4">
               <Image
-                src="/images/zacc.jpg"
+                src="/images/zac.png"
                 alt="MyShroomWall"
                 width={160}
                 height={48}

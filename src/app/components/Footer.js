@@ -12,7 +12,7 @@ export default function Footer() {
             <a href="/" className="inline-block mb-4">
               <Image
                 src="/images/zac.png"
-                alt="MyShroomWall"
+                alt="Zaccflora Logo"
                 width={160}
                 height={48}
                 className="h-10 md:h-12 w-auto object-contain"

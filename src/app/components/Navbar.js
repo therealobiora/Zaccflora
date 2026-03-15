@@ -12,7 +12,7 @@ export default function Navbar() {
         <a href="/" className="flex items-center shrink-0">
           <img
             src="/images/zac.png"
-            alt="MyShroomWall - Natural wellness with mushrooms"
+            alt="Zaccflora Logo"
             className="h-11 w-auto md:h-14 lg:h-16 object-contain" // ← larger on desktop
           />
         </a>

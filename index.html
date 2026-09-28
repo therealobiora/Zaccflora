@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reidflora – Functional Mushroom Wellness</title>
+<meta name="description" content="Reidflora – carefully sourced functional mushroom products for focus, balance and everyday wellness.">
+<link rel="icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Itim&family=Delius&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #5aac66;
+    --green-dark: #3f8a4b;
+    --green-soft: #e9f5eb;
+    --ink: #111827;
+    --muted: #4b5563;
+    --bg-alt: #f8f9fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Delius', system-ui, sans-serif; color: var(--ink); background: #fff; line-height: 1.6; }
+  h1, h2, h3, .btn { font-family: 'Itim', 'Delius', sans-serif; font-weight: 400; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .container { width: min(1160px, 100% - 32px); margin-inline: auto; }
+  section { padding: 96px 0; }
+  .center { text-align: center; }
+
+  .btn { display: inline-block; background: var(--green); color: #fff; border-radius: 999px; padding: 14px 44px; font-size: 1.4rem; transition: background .2s, transform .2s; }
+  .btn:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+  /* Nav */
+  header { position: sticky; top: 0; z-index: 10; background: var(--green); }
+  nav { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 16px; }
+  .logo img { width: 48px; height: 48px; border-radius: 50%; background: #111; }
+  .links { display: flex; gap: 40px; }
+  .links a { color: #fff; font-size: 1.15rem; }
+  .links a:hover { opacity: .8; }
+  .nav-cta { background: #fff; color: var(--green); padding: 10px 26px; border-radius: 8px; font-family: 'Itim', sans-serif; font-size: 1.1rem; }
+
+  /* Hero */
+  .hero {
+    min-height: calc(100vh - 76px); display: grid; place-items: center; text-align: center; color: #fff;
+    background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url(images/hero.jpg) center/cover, #2d3b2f;
+  }
+  .hero h1 { font-size: clamp(2.4rem, 5.5vw, 4.4rem); line-height: 1.15; max-width: 960px; margin: 0 auto 36px; }
+  .hero p { font-size: clamp(1.1rem, 2vw, 1.5rem); max-width: 820px; margin: 0 auto 48px; }
+
+  /* Categories */
+  .cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 24px; max-width: 1000px; margin-inline: auto; }
+  .cat { text-align: center; font-size: 1.2rem; }
+  .cat img { width: 200px; height: 200px; margin: 0 auto 16px; border-radius: 50%; object-fit: cover; background: var(--green-soft); box-shadow: 0 2px 6px rgba(0,0,0,.12); transition: transform .3s; }
+  .cat:hover img { transform: scale(1.05); }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .about h2 { font-size: clamp(2.2rem, 4vw, 3.4rem); margin-bottom: 20px; }
+  .about p { color: var(--muted); font-size: 1.1rem; margin-bottom: 16px; }
+  .about img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 16px; background: var(--green-soft); box-shadow: 0 10px 30px rgba(0,0,0,.15); }
+
+  /* Products */
+  .eyebrow { color: var(--green); letter-spacing: .1em; text-transform: uppercase; font-size: 1.05rem; }
+  .title { font-size: clamp(2rem, 4vw, 3.4rem); margin: 8px 0 56px; }
+  .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
+  .card { border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.1); text-align: center; display: flex; flex-direction: column; transition: transform .3s, box-shadow .3s; }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0,0,0,.14); }
+  .card img { width: 100%; aspect-ratio: 7/5; object-fit: cover; background: var(--green-soft); }
+  .card div { padding: 28px; display: flex; flex-direction: column; flex: 1; }
+  .card h3 { font-size: 1.8rem; margin-bottom: 10px; }
+  .card p { color: var(--muted); margin-bottom: 24px; flex: 1; }
+  .card .btn { width: 100%; padding: 10px; }
+
+  /* Why */
+  .why { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; }
+  .why article { border-left: 7px solid var(--green); border-radius: 10px; padding: 36px; box-shadow: 0 2px 10px rgba(0,0,0,.08); transition: transform .3s, box-shadow .3s; }
+  .why article:hover { transform: translateY(-8px); box-shadow: 0 14px 30px rgba(0,0,0,.12); }
+  .why article:hover h3 { color: var(--green); }
+  .num { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--green-soft); color: var(--green); font-size: 1.2rem; margin-bottom: 20px; }
+  .why h3 { font-size: 1.8rem; line-height: 1.25; margin-bottom: 20px; transition: color .3s; }
+  .why p { color: var(--muted); font-size: 1.1rem; line-height: 1.8; }
+
+  /* Reviews marquee */
+  .marquee { overflow: hidden; max-width: 1300px; margin-inline: auto; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+  .track { display: flex; gap: 28px; width: max-content; animation: scroll 40s linear infinite; padding: 8px 0 16px; }
+  .marquee:hover .track { animation-play-state: paused; }
+  .review { width: 360px; background: var(--bg-alt); border-radius: 12px; padding: 32px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .review q { display: block; font-style: italic; color: var(--muted); min-height: 96px; margin-bottom: 16px; }
+  .review strong { display: block; font-family: 'Itim', sans-serif; font-weight: 400; font-size: 1.2rem; }
+  .review span { color: #6b7280; font-size: .95rem; }
+  @keyframes scroll { to { transform: translateX(calc(-50% - 14px)); } }
+  @media (prefers-reduced-motion: reduce) { .track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } }
+
+  /* Contact */
+  #contact { background: var(--bg-alt); }
+  #contact p { max-width: 900px; margin: 0 auto 56px; font-size: 1.35rem; color: #374151; }
+  .socials { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+  .socials a { display: flex; flex-direction: column; align-items: center; gap: 16px; font-size: 1.15rem; }
+  .socials .ico { width: 96px; height: 96px; border-radius: 50%; background: var(--green-soft); display: grid; place-items: center; color: var(--green); transition: background .2s, color .2s; }
+  .socials a:hover .ico { background: var(--green); color: #fff; }
+  .socials svg { width: 44px; height: 44px; }
+
+  /* Footer */
+  footer { padding: 64px 0 32px; }
+  .foot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; padding-bottom: 48px; border-bottom: 1px solid #e5e7eb; }
+  .foot img { width: 40px; height: 40px; border-radius: 50%; background: #111; margin-bottom: 28px; }
+  .foot p, .foot a { color: var(--muted); font-size: 1.1rem; }
+  .foot a:hover { color: var(--green); }
+  .foot h3 { font-size: 1.6rem; margin-bottom: 16px; }
+  .foot ul { list-style: none; display: grid; gap: 8px; }
+  .foot .row { display: flex; gap: 36px; flex-wrap: wrap; }
+  .copy { text-align: center; color: #6b7280; padding-top: 28px; }
+
+  @media (max-width: 900px) {
+    .links { display: none; } /* ponytail: no hamburger; Shop Now + single-page scroll covers mobile */
+    .products, .about, .foot { grid-template-columns: 1fr; }
+    .why { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .cats { grid-template-columns: repeat(2, 1fr); }
+    .cat img { width: 140px; height: 140px; }
+    section { padding: 64px 0; }
+  }
+  @media (max-width: 560px) { .why { grid-template-columns: 1fr; } .review { width: 280px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="container">
+    <a href="#home" class="logo" aria-label="Reidflora home"><img src="images/logo.png" alt="Reidflora logo"></a>
+    <div class="links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#menu" class="nav-cta">Shop Now</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container">
+      <h1>Reidflora – Functional Mushroom Wellness, Redefined.</h1>
+      <p>Explore nature-powered mushroom products designed to support focus, balance, and conscious living.</p>
+      <a href="#menu" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="container cats">
+      <a href="#menu" class="cat"><img src="images/cat-lions-mane.jpg" alt="">Lion's Mane</a>
+      <a href="#menu" class="cat"><img src="images/cat-reishi.jpg" alt="">Reishi</a>
+      <a href="#menu" class="cat"><img src="images/cat-cordyceps.jpg" alt="">Cordyceps</a>
+      <a href="#menu" class="cat"><img src="images/cat-tinctures.jpg" alt="">Tinctures</a>
+      <a href="#menu" class="cat"><img src="images/cat-chaga.jpg" alt="">Chaga</a>
+      <a href="#menu" class="cat"><img src="images/cat-grow-kits.jpg" alt="">Grow Kits</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about">
+      <div>
+        <h2>About Reidflora</h2>
+        <p>Reidflora brings the time-honoured tradition of functional mushrooms into modern daily routines. We carefully source Lion's Mane, Reishi, Cordyceps, Chaga and more from trusted growers.</p>
+        <p>Every product is selected with attention to quality, purity and consistency, so you can build a wellness ritual you trust.</p>
+      </div>
+      <img src="images/about.jpg" alt="Mushrooms growing in a forest">
+    </div>
+  </section>
+
+  <section id="menu" class="center">
+    <div class="container">
+      <p class="eyebrow">Crafted for you</p>
+      <h2 class="title">Reidflora High-Quality Products</h2>
+      <div class="products">
+        <article class="card"><img src="images/p-lions-mane.jpg" alt="Lion's Mane capsules"><div><h3>Lion's Mane Capsules</h3><p>Daily capsules to support focus and mental clarity.</p><a href="#contact" class="btn">Buy Now</a></div></article>
+        <article class="card"><img src="images/p-reishi.jpg" alt="Reishi extract"><div><h3>Reishi Extract</h3><p>The calming mushroom for evening balance and relaxation.</p><a href="#contact" class="btn">Buy Now</a></div></article>
+        <article class="card"><img src="images/p-cordyceps.jpg" alt="Cordyceps powder"><div><h3>Cordyceps Powder</h3><p>A natural addition to your pre-workout or morning smoothie.</p><a href="#contact" class="btn">Buy Now</a></div></article>
+        <article class="card"><img src="images/p-chaga.jpg" alt="Chaga tea"><div><h3>Chaga Tea</h3><p>Rich, earthy wild-harvested chaga for a warming daily cup.</p><a href="#contact" class="btn">Buy Now</a></div></article>
+        <article class="card"><img src="images/p-turkey-tail.jpg" alt="Turkey Tail tincture"><div><h3>Turkey Tail Tincture</h3><p>Convenient dual-extracted drops for easy daily use.</p><a href="#contact" class="btn">Buy Now</a></div></article>
+        <article class="card"><img src="images/p-grow-kit.jpg" alt="Oyster mushroom grow kit"><div><h3>Oyster Grow Kit</h3><p>Grow fresh gourmet oyster mushrooms at home in two weeks.</p><a href="#contact" class="btn">Buy Now</a></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="title center" style="text-transform:uppercase">Why Choose Us</h2>
+      <div class="why">
+        <article><span class="num">01</span><h3>International Shipping Available</h3><p>We work with trusted logistics partners to serve customers worldwide.</p></article>
+        <article><span class="num">02</span><h3>Reliable Fulfillment</h3><p>Orders are processed efficiently and handled with care.</p></article>
+        <article><span class="num">03</span><h3>Quality-Focused Selection</h3><p>Reidflora products are sourced thoughtfully with attention to standards and consistency.</p></article>
+        <article><span class="num">04</span><h3>Privacy &amp; Trust</h3><p>Here at Reidflora, customer confidentiality and secure handling are a top priority.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="center">
+    <h2 class="title">What Our Community Says</h2>
+    <!-- Replace these with real customer reviews before going live. Keep the list duplicated (aria-hidden copy) so the loop is seamless. -->
+    <div class="marquee">
+      <div class="track">
+        <div class="review"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
+        <div class="review"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
+        <div class="review"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
+        <div class="review"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
+        <div class="review" aria-hidden="true"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
+        <div class="review" aria-hidden="true"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
+        <div class="review" aria-hidden="true"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
+        <div class="review" aria-hidden="true"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="center">
+    <div class="container">
+      <h2 class="title" style="margin-bottom:32px">Contact Us</h2>
+      <p>For inquiries, orders, product recommendations and general support, feel free to reach out.</p>
+      <div class="socials">
+        <a href="https://t.me/YOUR_HANDLE" target="_blank" rel="noopener"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm5.6 8.2-1.9 8.9c-.1.6-.5.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.3.3-.6.3l.2-3 5.5-5c.2-.2 0-.3-.4-.1l-6.8 4.3-2.9-.9c-.6-.2-.6-.6.1-.9l11.4-4.4c.5-.2 1 .1.9.9z"/></svg></span>Telegram</a>
+        <a href="https://wa.me/YOUR_NUMBER" target="_blank" rel="noopener"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21l1.6-4.7A9 9 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 1c-1.5-.5-2.5-1.5-3-3l1-1-1-2z" fill="currentColor" stroke="none"/></svg></span>WhatsApp</a>
+        <a href="mailto:hello@reidflora.com"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>Email</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <img src="images/logo.png" alt="Reidflora logo">
+        <p>Functional mushroom wellness — carefully sourced mushroom products for focus, balance, and conscious living.</p>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <ul><li><a href="#menu">Menu</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li><li><a href="#reviews">Reviews</a></li></ul>
+      </div>
+      <div>
+        <h3>Connect</h3>
+        <div class="row"><a href="https://t.me/YOUR_HANDLE">Telegram</a><a href="https://wa.me/YOUR_NUMBER">WhatsApp</a><a href="mailto:hello@reidflora.com">Email</a></div>
+      </div>
+    </div>
+    <p class="copy">© 2026 Reidflora. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

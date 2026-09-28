@@ -3,248 +3,609 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reidflora – Functional Mushroom Wellness</title>
-<meta name="description" content="Reidflora – carefully sourced functional mushroom products for focus, balance and everyday wellness.">
-<link rel="icon" href="images/logo.png">
+<title>Zaccflora — Functional Mushrooms</title>
+<meta name="description" content="Zaccflora — carefully sourced functional mushrooms for focus, calm and everyday ritual.">
+<link rel="icon" href="images/zac.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Itim&family=Delius&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --green: #5aac66;
-    --green-dark: #3f8a4b;
-    --green-soft: #e9f5eb;
-    --ink: #111827;
-    --muted: #4b5563;
-    --bg-alt: #f8f9fa;
+    --bg: #0a1a12;
+    --bg-2: #10291b;
+    --bg-3: #173a26;
+    --lime: #c6f06a;
+    --leaf: #3f9a5c;
+    --cream: #eef5e6;
+    --dim: rgba(238, 245, 230, .62);
+    --line: rgba(238, 245, 230, .13);
+    --ease: cubic-bezier(.2, .8, .2, 1);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Delius', system-ui, sans-serif; color: var(--ink); background: #fff; line-height: 1.6; }
-  h1, h2, h3, .btn { font-family: 'Itim', 'Delius', sans-serif; font-weight: 400; }
+  body { background: var(--bg); color: var(--cream); font-family: 'Bricolage Grotesque', system-ui, sans-serif; line-height: 1.5; overflow-x: hidden; }
+  body::after { /* grain */
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 90; opacity: .06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
   a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
-  .container { width: min(1160px, 100% - 32px); margin-inline: auto; }
-  section { padding: 96px 0; }
-  .center { text-align: center; }
+  ::selection { background: var(--lime); color: var(--bg); }
+  :focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+  .wrap { width: min(1280px, 100% - 32px); margin-inline: auto; }
+  section { padding: 130px 0; position: relative; }
 
-  .btn { display: inline-block; background: var(--green); color: #fff; border-radius: 999px; padding: 14px 44px; font-size: 1.4rem; transition: background .2s, transform .2s; }
-  .btn:hover { background: var(--green-dark); transform: translateY(-2px); }
+  .tag { display: inline-flex; align-items: center; gap: 8px; font-size: .8rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--lime); }
+  .tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 14px var(--lime); }
+  h2 { font-size: clamp(2.6rem, 6vw, 5.4rem); font-weight: 720; letter-spacing: -.045em; line-height: .95; margin-top: 18px; }
+  h2 span { color: var(--lime); }
+  .lead { color: var(--dim); font-size: 1.15rem; max-width: 440px; }
 
-  /* Nav */
-  header { position: sticky; top: 0; z-index: 10; background: var(--green); }
-  nav { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 16px; }
-  .logo img { width: 48px; height: 48px; border-radius: 50%; background: #111; }
-  .links { display: flex; gap: 40px; }
-  .links a { color: #fff; font-size: 1.15rem; }
-  .links a:hover { opacity: .8; }
-  .nav-cta { background: #fff; color: var(--green); padding: 10px 26px; border-radius: 8px; font-family: 'Itim', sans-serif; font-size: 1.1rem; }
+  .btn { display: inline-flex; align-items: center; gap: 14px; background: var(--lime); color: var(--bg); font-weight: 700; font-size: 1.05rem; padding: 8px 8px 8px 26px; border-radius: 999px; transition: transform .3s var(--ease), box-shadow .3s; }
+  .btn i { width: 44px; height: 44px; border-radius: 50%; background: var(--bg); color: var(--lime); display: grid; place-items: center; font-style: normal; transition: transform .4s var(--ease); }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px -10px rgba(198,240,106,.55); }
+  .btn:hover i { transform: rotate(-45deg); }
+  .ghost { display: inline-flex; align-items: center; gap: 10px; padding: 18px 26px; border-radius: 999px; border: 1px solid var(--line); font-weight: 600; transition: border-color .3s, background .3s; }
+  .ghost:hover { border-color: var(--lime); background: rgba(198,240,106,.06); }
 
-  /* Hero */
-  .hero {
-    min-height: calc(100vh - 76px); display: grid; place-items: center; text-align: center; color: #fff;
-    background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url(images/hero.jpg) center/cover, #2d3b2f;
+  /* ---------- progress + glow ---------- */
+  .progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: var(--lime); transform-origin: 0 50%; transform: scaleX(0); z-index: 50; }
+  .glow { position: fixed; top: 0; left: 0; width: 520px; height: 520px; margin: -260px 0 0 -260px; border-radius: 50%; pointer-events: none; z-index: 0;
+    background: radial-gradient(circle, rgba(198,240,106,.08), transparent 60%); transition: transform .25s linear; }
+  main, header, footer { position: relative; z-index: 1; }
+
+  /* ---------- nav ---------- */
+  .nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 40; width: min(920px, 100% - 32px);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 8px 8px 12px; border-radius: 999px;
+    background: rgba(16, 41, 27, .7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--line); }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.15rem; letter-spacing: -.02em; }
+  .logo img { width: 36px; height: 36px; border-radius: 50%; background: #000; }
+  .nav .links { display: flex; gap: 4px; }
+  .nav .links a { padding: 8px 16px; border-radius: 999px; color: var(--dim); transition: background .2s, color .2s; }
+  .nav .links a:hover { background: var(--bg-3); color: var(--cream); }
+  .nav .shop { background: var(--lime); color: var(--bg); font-weight: 700; padding: 11px 22px; border-radius: 999px; }
+  .burger { display: none; width: 42px; height: 42px; border-radius: 50%; border: 0; background: var(--bg-3); color: var(--cream); cursor: pointer; place-items: center; }
+
+  /* ---------- hero ---------- */
+  .hero { min-height: 100vh; padding: 150px 0 90px; display: flex; align-items: center; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; width: 1000px; height: 1000px; left: -400px; bottom: -600px; border-radius: 50%; background: radial-gradient(circle, rgba(63,154,92,.35), transparent 65%); pointer-events: none; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 72px; align-items: center; }
+  .hero h1 { font-size: clamp(3rem, 6.6vw, 6.8rem); font-weight: 760; line-height: .98; letter-spacing: -.055em; margin: 22px 0 30px; }
+  .hero h1 em { font-style: normal; color: var(--lime); }
+  .ln { display: block; overflow: hidden; padding-bottom: .06em; }
+  .ln > span { display: block; transform: translateY(105%); animation: up 1s var(--ease) forwards; }
+  .ln:nth-child(2) > span { animation-delay: .1s; } .ln:nth-child(3) > span { animation-delay: .2s; }
+  @keyframes up { to { transform: none; } }
+  .pill { display: inline-block; width: 1.8em; height: .8em; border-radius: 999px; vertical-align: -.03em; background: var(--bg-3) center/cover; transition: width .6s var(--ease); }
+  .hero h1:hover .pill { width: 2.3em; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
+  .trust { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 44px; color: var(--dim); font-size: .95rem; }
+  .trust span::before { content: "✓"; color: var(--lime); margin-right: 8px; font-weight: 700; }
+
+  .collage { position: relative; aspect-ratio: 4/5; }
+  .collage > img { width: 100%; height: 100%; object-fit: cover; border-radius: 240px 240px 32px 32px; background: var(--bg-2); }
+  .float { position: absolute; display: flex; align-items: center; gap: 12px; padding: 10px 18px 10px 10px; border-radius: 20px;
+    background: rgba(16,41,27,.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--line); animation: bob 6s ease-in-out infinite; }
+  .float img { width: 52px; height: 52px; border-radius: 14px; object-fit: cover; background: var(--bg-3); }
+  .float b { display: block; font-size: 1rem; }
+  .float small { color: var(--lime); font-weight: 600; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; }
+  .f1 { top: 22%; left: -14%; }
+  .f2 { bottom: 12%; right: -10%; animation-delay: -3s; }
+  @keyframes bob { 50% { transform: translateY(-12px); } }
+  .spin { position: absolute; top: -22px; right: -22px; width: 140px; height: 140px; border-radius: 50%; background: var(--lime); color: var(--bg); display: grid; place-items: center; }
+  .spin svg.ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: rot 20s linear infinite; }
+  .spin svg.shroom { width: 42px; height: 42px; }
+  @keyframes rot { to { transform: rotate(360deg); } }
+
+  /* ---------- band ---------- */
+  .band { border-block: 1px solid var(--line); padding: 26px 0; overflow: hidden; }
+  .band div { display: flex; gap: 40px; width: max-content; animation: slide 30s linear infinite; font-size: clamp(2.4rem, 5vw, 4.6rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+  .band span:nth-child(odd) { color: transparent; -webkit-text-stroke: 1.5px var(--lime); }
+  .band span::after { content: "✦"; color: var(--lime); -webkit-text-stroke: 0; font-size: .5em; vertical-align: middle; margin-left: 40px; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* ---------- showcase ---------- */
+  .show-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; margin-bottom: 40px; }
+  .show { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .stage { position: sticky; top: 100px; height: calc(100vh - 130px); border-radius: 32px; overflow: hidden; background: var(--bg-2); }
+  .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.1); transition: opacity .8s var(--ease), transform 1.4s var(--ease); }
+  .stage img.on { opacity: 1; transform: none; }
+  .stage::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,26,18,.85), transparent 45%); }
+  .hud { position: absolute; left: 28px; right: 28px; bottom: 26px; z-index: 1; display: flex; justify-content: space-between; align-items: end; }
+  .hud b { font-size: 4.5rem; font-weight: 800; letter-spacing: -.06em; line-height: .85; }
+  .hud b small { font-size: 1.2rem; color: var(--dim); letter-spacing: 0; font-weight: 500; }
+  .hud span { background: var(--lime); color: var(--bg); font-weight: 700; padding: 8px 16px; border-radius: 999px; }
+  .panel { min-height: 78vh; display: flex; flex-direction: column; justify-content: center; padding: 48px 0; border-top: 1px solid var(--line); opacity: .35; transition: opacity .6s; }
+  .panel.on { opacity: 1; }
+  .panel .m-img { display: none; }
+  .panel .no { color: var(--lime); font-weight: 600; }
+  .panel h3 { font-size: clamp(2.6rem, 4.8vw, 4.4rem); font-weight: 750; letter-spacing: -.05em; line-height: .95; margin: 14px 0 18px; }
+  .panel p { color: var(--dim); font-size: 1.15rem; max-width: 42ch; margin-bottom: 28px; }
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); margin: 32px 0 36px; border-block: 1px solid var(--line); }
+  .facts div { padding: 16px 0; }
+  .facts div + div { padding-left: 18px; border-left: 1px solid var(--line); }
+  .facts small { display: block; color: var(--dim); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
+  .facts b { font-size: 1.1rem; font-weight: 600; }
+  .panel .btn { align-self: flex-start; }
+
+  /* ---------- how ---------- */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 64px; counter-reset: s; }
+  .step { background: var(--bg-2); border: 1px solid var(--line); border-radius: 28px; padding: 34px; position: relative; overflow: hidden; transition: transform .4s var(--ease), border-color .4s; }
+  .step:hover { transform: translateY(-6px); border-color: rgba(198,240,106,.4); }
+  .step::before { counter-increment: s; content: "0" counter(s); position: absolute; right: -6px; top: -24px; font-size: 9rem; font-weight: 800; letter-spacing: -.06em; color: transparent; -webkit-text-stroke: 1px rgba(198,240,106,.25); }
+  .step .ico { width: 58px; height: 58px; border-radius: 18px; background: var(--lime); color: var(--bg); display: grid; place-items: center; margin-bottom: 70px; }
+  .step .ico svg { width: 26px; height: 26px; }
+  .step h3 { font-size: 1.7rem; font-weight: 700; letter-spacing: -.03em; margin-bottom: 8px; }
+  .step p { color: var(--dim); }
+
+  /* ---------- why ---------- */
+  .why { background: var(--lime); color: var(--bg); border-radius: 48px; margin: 0 16px; overflow: hidden; }
+  .why .tag { color: var(--bg); }
+  .why .tag::before { background: var(--bg); box-shadow: none; }
+  .why h2 span { color: var(--leaf); }
+  .why-top { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; }
+  .why-top svg { width: 150px; height: 150px; opacity: .9; }
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 64px; border-top: 2px solid var(--bg); }
+  .why-grid div { padding: 32px 26px 36px; border-right: 1px solid rgba(10,26,18,.2); transition: background .4s, color .4s; }
+  .why-grid div:last-child { border-right: 0; }
+  .why-grid div:hover { background: var(--bg); color: var(--lime); }
+  .why-grid div:hover p { color: var(--cream); }
+  .why-grid b { display: block; font-size: 4rem; font-weight: 800; letter-spacing: -.06em; line-height: 1; margin-bottom: 36px; }
+  .why-grid h3 { font-size: 1.45rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; margin-bottom: 10px; }
+  .why-grid p { opacity: .8; transition: color .4s; }
+
+  /* ---------- about ---------- */
+  .about { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: center; }
+  .about-img { position: relative; }
+  .about-img img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 32px; background: var(--bg-2); }
+  .about-img .quote { position: absolute; left: -28px; bottom: -28px; max-width: 280px; background: var(--lime); color: var(--bg); padding: 24px; border-radius: 24px; font-size: 1.25rem; font-weight: 700; line-height: 1.2; letter-spacing: -.02em; transform: rotate(-3deg); }
+  .about p { color: var(--dim); font-size: 1.15rem; margin-top: 22px; max-width: 54ch; }
+  .about p strong { color: var(--cream); font-weight: 600; }
+  .vals { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 34px; }
+  .vals span { border: 1px solid var(--line); border-radius: 999px; padding: 9px 18px; }
+
+  /* ---------- reviews ---------- */
+  .reviews { overflow: hidden; }
+  .reviews h2 { text-align: center; margin-bottom: 56px; }
+  .row { display: flex; gap: 18px; width: max-content; animation: slide 50s linear infinite; }
+  .row + .row { margin-top: 18px; animation-direction: reverse; }
+  .row:hover { animation-play-state: paused; }
+  .rev { width: 380px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 24px; padding: 28px; }
+  .rev .stars { color: var(--lime); letter-spacing: 4px; margin-bottom: 12px; }
+  .rev q { display: block; font-size: 1.12rem; min-height: 64px; }
+  .rev footer { margin-top: 18px; display: flex; align-items: center; gap: 12px; color: var(--dim); font-size: .95rem; }
+  .rev footer span { width: 38px; height: 38px; border-radius: 50%; background: var(--bg-3); display: grid; place-items: center; color: var(--lime); font-weight: 700; }
+
+  /* ---------- faq ---------- */
+  .faq { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; align-items: start; }
+  .faq .lead { margin-top: 22px; }
+  details { border-bottom: 1px solid var(--line); }
+  details:first-child { border-top: 1px solid var(--line); }
+  summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 26px 0; font-size: 1.35rem; font-weight: 600; letter-spacing: -.02em; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; font-size: 1.4rem; font-weight: 400; transition: transform .35s var(--ease), background .3s, color .3s; }
+  details[open] summary::after { transform: rotate(45deg); background: var(--lime); color: var(--bg); border-color: var(--lime); }
+  details p { color: var(--dim); font-size: 1.08rem; padding: 0 60px 26px 0; }
+
+  /* ---------- contact ---------- */
+  .cta-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 48px; padding: 100px 32px; text-align: center; position: relative; overflow: hidden; }
+  .cta-card::before { content: ""; position: absolute; width: 700px; height: 700px; left: 50%; top: -420px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(circle, rgba(198,240,106,.22), transparent 65%); }
+  .cta-card h2 { font-size: clamp(3rem, 8.5vw, 8rem); position: relative; }
+  .cta-card > p { color: var(--dim); font-size: 1.2rem; max-width: 540px; margin: 26px auto 44px; position: relative; }
+  .ch { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; position: relative; }
+  .ch a { display: inline-flex; align-items: center; gap: 12px; padding: 18px 30px; border-radius: 999px; border: 1px solid var(--line); font-size: 1.12rem; font-weight: 600; transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease); }
+  .ch a:hover { transform: translateY(-3px); }
+  .ch a:hover, .ch a:first-child { background: var(--lime); color: var(--bg); border-color: var(--lime); }
+  .ch svg { width: 22px; height: 22px; }
+
+  /* ---------- footer ---------- */
+  .foot { padding: 90px 0 0; overflow: hidden; }
+  .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--line); }
+  .foot-grid p { color: var(--dim); max-width: 36ch; margin-top: 18px; }
+  .foot-grid h4 { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--lime); margin-bottom: 16px; font-weight: 600; }
+  .foot-grid ul { list-style: none; display: grid; gap: 10px; }
+  .foot-grid ul a { color: var(--dim); transition: color .2s; }
+  .foot-grid ul a:hover { color: var(--cream); }
+  .copy { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--dim); font-size: .92rem; padding-top: 24px; }
+  .mark { font-size: 21vw; font-weight: 800; letter-spacing: -.07em; line-height: .78; text-align: center; margin-top: 40px; white-space: nowrap; transform: translateY(8%);
+    background: linear-gradient(to bottom, var(--bg-3), var(--bg)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* ---------- reveal ---------- */
+  .rv { opacity: 0; transform: translateY(36px); transition: opacity .9s ease, transform .9s var(--ease); }
+  .rv.in { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; }
+    .ln > span { transform: none; }
+    .rv { opacity: 1; transform: none; }
+    .row { flex-wrap: wrap; width: auto; justify-content: center; }
   }
-  .hero h1 { font-size: clamp(2.4rem, 5.5vw, 4.4rem); line-height: 1.15; max-width: 960px; margin: 0 auto 36px; }
-  .hero p { font-size: clamp(1.1rem, 2vw, 1.5rem); max-width: 820px; margin: 0 auto 48px; }
+  @media (hover: none) { .glow { display: none; } }
 
-  /* Categories */
-  .cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 24px; max-width: 1000px; margin-inline: auto; }
-  .cat { text-align: center; font-size: 1.2rem; }
-  .cat img { width: 200px; height: 200px; margin: 0 auto 16px; border-radius: 50%; object-fit: cover; background: var(--green-soft); box-shadow: 0 2px 6px rgba(0,0,0,.12); transition: transform .3s; }
-  .cat:hover img { transform: scale(1.05); }
-
-  /* About */
-  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-  .about h2 { font-size: clamp(2.2rem, 4vw, 3.4rem); margin-bottom: 20px; }
-  .about p { color: var(--muted); font-size: 1.1rem; margin-bottom: 16px; }
-  .about img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 16px; background: var(--green-soft); box-shadow: 0 10px 30px rgba(0,0,0,.15); }
-
-  /* Products */
-  .eyebrow { color: var(--green); letter-spacing: .1em; text-transform: uppercase; font-size: 1.05rem; }
-  .title { font-size: clamp(2rem, 4vw, 3.4rem); margin: 8px 0 56px; }
-  .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
-  .card { border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.1); text-align: center; display: flex; flex-direction: column; transition: transform .3s, box-shadow .3s; }
-  .card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0,0,0,.14); }
-  .card img { width: 100%; aspect-ratio: 7/5; object-fit: cover; background: var(--green-soft); }
-  .card div { padding: 28px; display: flex; flex-direction: column; flex: 1; }
-  .card h3 { font-size: 1.8rem; margin-bottom: 10px; }
-  .card p { color: var(--muted); margin-bottom: 24px; flex: 1; }
-  .card .btn { width: 100%; padding: 10px; }
-
-  /* Why */
-  .why { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; }
-  .why article { border-left: 7px solid var(--green); border-radius: 10px; padding: 36px; box-shadow: 0 2px 10px rgba(0,0,0,.08); transition: transform .3s, box-shadow .3s; }
-  .why article:hover { transform: translateY(-8px); box-shadow: 0 14px 30px rgba(0,0,0,.12); }
-  .why article:hover h3 { color: var(--green); }
-  .num { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--green-soft); color: var(--green); font-size: 1.2rem; margin-bottom: 20px; }
-  .why h3 { font-size: 1.8rem; line-height: 1.25; margin-bottom: 20px; transition: color .3s; }
-  .why p { color: var(--muted); font-size: 1.1rem; line-height: 1.8; }
-
-  /* Reviews marquee */
-  .marquee { overflow: hidden; max-width: 1300px; margin-inline: auto; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
-  .track { display: flex; gap: 28px; width: max-content; animation: scroll 40s linear infinite; padding: 8px 0 16px; }
-  .marquee:hover .track { animation-play-state: paused; }
-  .review { width: 360px; background: var(--bg-alt); border-radius: 12px; padding: 32px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
-  .review q { display: block; font-style: italic; color: var(--muted); min-height: 96px; margin-bottom: 16px; }
-  .review strong { display: block; font-family: 'Itim', sans-serif; font-weight: 400; font-size: 1.2rem; }
-  .review span { color: #6b7280; font-size: .95rem; }
-  @keyframes scroll { to { transform: translateX(calc(-50% - 14px)); } }
-  @media (prefers-reduced-motion: reduce) { .track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } }
-
-  /* Contact */
-  #contact { background: var(--bg-alt); }
-  #contact p { max-width: 900px; margin: 0 auto 56px; font-size: 1.35rem; color: #374151; }
-  .socials { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
-  .socials a { display: flex; flex-direction: column; align-items: center; gap: 16px; font-size: 1.15rem; }
-  .socials .ico { width: 96px; height: 96px; border-radius: 50%; background: var(--green-soft); display: grid; place-items: center; color: var(--green); transition: background .2s, color .2s; }
-  .socials a:hover .ico { background: var(--green); color: #fff; }
-  .socials svg { width: 44px; height: 44px; }
-
-  /* Footer */
-  footer { padding: 64px 0 32px; }
-  .foot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; padding-bottom: 48px; border-bottom: 1px solid #e5e7eb; }
-  .foot img { width: 40px; height: 40px; border-radius: 50%; background: #111; margin-bottom: 28px; }
-  .foot p, .foot a { color: var(--muted); font-size: 1.1rem; }
-  .foot a:hover { color: var(--green); }
-  .foot h3 { font-size: 1.6rem; margin-bottom: 16px; }
-  .foot ul { list-style: none; display: grid; gap: 8px; }
-  .foot .row { display: flex; gap: 36px; flex-wrap: wrap; }
-  .copy { text-align: center; color: #6b7280; padding-top: 28px; }
-
-  @media (max-width: 900px) {
-    .links { display: none; } /* ponytail: no hamburger; Shop Now + single-page scroll covers mobile */
-    .products, .about, .foot { grid-template-columns: 1fr; }
-    .why { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    .cats { grid-template-columns: repeat(2, 1fr); }
-    .cat img { width: 140px; height: 140px; }
-    section { padding: 64px 0; }
+  @media (max-width: 1000px) {
+    .nav .links { display: none; }
+    .nav .shop { margin-left: auto; }
+    .burger { display: grid; }
+    .burger .i-x, .nav.open .burger .i-menu { display: none; }
+    .nav.open .burger .i-x { display: inline; }
+    .nav.open .burger { background: var(--cream); color: var(--bg); }
+    .nav.open .links { display: flex; flex-direction: column; gap: 0; position: absolute; top: calc(100% + 10px); left: 0; right: 0; padding: 10px 22px;
+      border-radius: 28px; background: var(--bg-2); border: 1px solid var(--line); box-shadow: 0 30px 60px -20px rgba(0,0,0,.6); animation: drop .35s var(--ease); }
+    .nav.open .links a { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-radius: 0;
+      font-size: 1.6rem; font-weight: 600; letter-spacing: -.02em; color: var(--cream); }
+    .nav.open .links a:hover { background: none; color: var(--lime); }
+    .nav.open .links a + a { border-top: 1px solid var(--line); }
+    .nav.open .links a::after { content: "→"; color: var(--lime); font-size: 1.2rem; }
+    @keyframes drop { from { opacity: 0; transform: translateY(-8px); } }
+    .hero-grid, .show, .about, .faq { grid-template-columns: 1fr; }
+    .hero-grid { gap: 90px; }
+    .collage { max-width: 480px; width: 100%; margin-inline: auto; }
+    .f1 { left: -8px; } .f2 { right: -8px; } .spin { right: -8px; width: 116px; height: 116px; }
+    .stage { display: none; }
+    .panel { min-height: 0; opacity: 1; padding: 28px 0; }
+    .panel .m-img { display: block; width: 100%; aspect-ratio: 16/11; object-fit: cover; border-radius: 24px; margin-bottom: 26px; background: var(--bg-2); }
+    .steps { grid-template-columns: 1fr; }
+    .step .ico { margin-bottom: 40px; }
+    .why { border-radius: 32px; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid div:nth-child(2) { border-right: 0; }
+    .why-grid div:nth-child(-n+2) { border-bottom: 1px solid rgba(10,26,18,.2); }
+    .about-img .quote { left: 12px; }
+    .faq { gap: 40px; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .foot-grid > div:first-child { grid-column: 1 / -1; }
+    section { padding: 90px 0; }
+    .cta-card { padding: 72px 20px; border-radius: 32px; }
   }
-  @media (max-width: 560px) { .why { grid-template-columns: 1fr; } .review { width: 280px; } }
+  @media (max-width: 560px) {
+    .why-grid { grid-template-columns: 1fr; }
+    .why-grid div { border-right: 0; border-bottom: 1px solid rgba(10,26,18,.2); }
+    .why-top svg { display: none; }
+    .rev { width: 290px; }
+    .logo span { display: none; }
+    .float { padding-right: 12px; } .float img { width: 42px; height: 42px; }
+    details p { padding-right: 0; }
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <nav class="container">
-    <a href="#home" class="logo" aria-label="Reidflora home"><img src="images/logo.png" alt="Reidflora logo"></a>
-    <div class="links">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#menu">Menu</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <a href="#menu" class="nav-cta">Shop Now</a>
+<div class="progress" aria-hidden="true"></div>
+<div class="glow" aria-hidden="true"></div>
+
+<header class="nav">
+  <a href="#" class="logo"><img src="images/zacc.jpg" alt=""><span>Zaccflora</span></a>
+  <nav class="links" onclick="this.parentNode.classList.remove('open'); this.parentNode.querySelector('.burger').setAttribute('aria-expanded', false)">
+    <a href="#lineup">Shop</a>
+    <a href="#how">How to order</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
   </nav>
+  <a href="#contact" class="shop">Order now</a>
+  <button class="burger" aria-label="Menu" aria-expanded="false"
+    onclick="this.setAttribute('aria-expanded', this.parentNode.classList.toggle('open'))">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path class="i-menu" d="M4 7h16M4 12h16M4 17h16"/><path class="i-x" d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
 </header>
 
 <main>
-  <section class="hero" id="home">
-    <div class="container">
-      <h1>Reidflora – Functional Mushroom Wellness, Redefined.</h1>
-      <p>Explore nature-powered mushroom products designed to support focus, balance, and conscious living.</p>
-      <a href="#menu" class="btn">Shop Now</a>
-    </div>
-  </section>
-
-  <section>
-    <div class="container cats">
-      <a href="#menu" class="cat"><img src="images/cat-lions-mane.jpg" alt="">Lion's Mane</a>
-      <a href="#menu" class="cat"><img src="images/cat-reishi.jpg" alt="">Reishi</a>
-      <a href="#menu" class="cat"><img src="images/cat-cordyceps.jpg" alt="">Cordyceps</a>
-      <a href="#menu" class="cat"><img src="images/cat-tinctures.jpg" alt="">Tinctures</a>
-      <a href="#menu" class="cat"><img src="images/cat-chaga.jpg" alt="">Chaga</a>
-      <a href="#menu" class="cat"><img src="images/cat-grow-kits.jpg" alt="">Grow Kits</a>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="container about">
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
       <div>
-        <h2>About Reidflora</h2>
-        <p>Reidflora brings the time-honoured tradition of functional mushrooms into modern daily routines. We carefully source Lion's Mane, Reishi, Cordyceps, Chaga and more from trusted growers.</p>
-        <p>Every product is selected with attention to quality, purity and consistency, so you can build a wellness ritual you trust.</p>
+        <span class="tag">Zaccflora · Functional mushroom wellness</span>
+        <h1>
+          <span class="ln"><span>Feed your <span class="pill" style="background-image:url(images/wall5.jpg)"></span></span></span>
+          <span class="ln"><span><em>mind.</em> Trust</span></span>
+          <span class="ln"><span>your <em>nature.</em></span></span>
+        </h1>
+        <p class="lead">Zaccflora brings you Lion's Mane, Reishi, Cordyceps and more, carefully sourced mushrooms for focus, calm and the everyday rituals that keep you grounded.</p>
+        <div class="hero-cta">
+          <a href="#lineup" class="btn">Explore the lineup <i>→</i></a>
+          <a href="#how" class="ghost">How to order</a>
+        </div>
+        <div class="trust"><span>Worldwide shipping</span><span>Discreet packaging</span><span>Real humans reply</span></div>
       </div>
-      <img src="images/about.jpg" alt="Mushrooms growing in a forest">
-    </div>
-  </section>
 
-  <section id="menu" class="center">
-    <div class="container">
-      <p class="eyebrow">Crafted for you</p>
-      <h2 class="title">Reidflora High-Quality Products</h2>
-      <div class="products">
-        <article class="card"><img src="images/p-lions-mane.jpg" alt="Lion's Mane capsules"><div><h3>Lion's Mane Capsules</h3><p>Daily capsules to support focus and mental clarity.</p><a href="#contact" class="btn">Buy Now</a></div></article>
-        <article class="card"><img src="images/p-reishi.jpg" alt="Reishi extract"><div><h3>Reishi Extract</h3><p>The calming mushroom for evening balance and relaxation.</p><a href="#contact" class="btn">Buy Now</a></div></article>
-        <article class="card"><img src="images/p-cordyceps.jpg" alt="Cordyceps powder"><div><h3>Cordyceps Powder</h3><p>A natural addition to your pre-workout or morning smoothie.</p><a href="#contact" class="btn">Buy Now</a></div></article>
-        <article class="card"><img src="images/p-chaga.jpg" alt="Chaga tea"><div><h3>Chaga Tea</h3><p>Rich, earthy wild-harvested chaga for a warming daily cup.</p><a href="#contact" class="btn">Buy Now</a></div></article>
-        <article class="card"><img src="images/p-turkey-tail.jpg" alt="Turkey Tail tincture"><div><h3>Turkey Tail Tincture</h3><p>Convenient dual-extracted drops for easy daily use.</p><a href="#contact" class="btn">Buy Now</a></div></article>
-        <article class="card"><img src="images/p-grow-kit.jpg" alt="Oyster mushroom grow kit"><div><h3>Oyster Grow Kit</h3><p>Grow fresh gourmet oyster mushrooms at home in two weeks.</p><a href="#contact" class="btn">Buy Now</a></div></article>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <h2 class="title center" style="text-transform:uppercase">Why Choose Us</h2>
-      <div class="why">
-        <article><span class="num">01</span><h3>International Shipping Available</h3><p>We work with trusted logistics partners to serve customers worldwide.</p></article>
-        <article><span class="num">02</span><h3>Reliable Fulfillment</h3><p>Orders are processed efficiently and handled with care.</p></article>
-        <article><span class="num">03</span><h3>Quality-Focused Selection</h3><p>Reidflora products are sourced thoughtfully with attention to standards and consistency.</p></article>
-        <article><span class="num">04</span><h3>Privacy &amp; Trust</h3><p>Here at Reidflora, customer confidentiality and secure handling are a top priority.</p></article>
+      <div class="collage">
+        <img src="images/wall-hero1.jpg" alt="Zaccflora functional mushrooms">
+        <div class="float f1"><img src="images/Golden.jpg" alt=""><div><small>Focus</small><b>Golden Teacher</b></div></div>
+        <div class="float f2"><img src="images/DMTVAPE.jpg" alt=""><div><small>Calm</small><b>DMT Vape</b></div></div>
+        <a href="#lineup" class="spin" aria-label="Shop the lineup">
+          <svg class="ring" viewBox="0 0 140 140" aria-hidden="true">
+            <path id="ring" d="M70,70 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0" fill="none"/>
+            <text font-family="Bricolage Grotesque, sans-serif" font-size="12" font-weight="700" letter-spacing="3.2" fill="#0a1a12"><textPath href="#ring">ZACCFLORA ✦ FUNCTIONAL FUNGI ✦ </textPath></text>
+          </svg>
+          <svg class="shroom" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 24C6 13 14 6 24 6s18 7 18 18z" fill="#0a1a12"/><path d="M19 24h10l-2 16a3 3 0 0 1-6 0z" fill="#0a1a12"/><circle cx="16" cy="16" r="2.5" fill="#c6f06a"/><circle cx="27" cy="12" r="2" fill="#c6f06a"/><circle cx="33" cy="19" r="2.5" fill="#c6f06a"/></svg>
+        </a>
       </div>
     </div>
   </section>
 
-  <section id="reviews" class="center">
-    <h2 class="title">What Our Community Says</h2>
-    <!-- Replace these with real customer reviews before going live. Keep the list duplicated (aria-hidden copy) so the loop is seamless. -->
-    <div class="marquee">
-      <div class="track">
-        <div class="review"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
-        <div class="review"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
-        <div class="review"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
-        <div class="review"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
-        <div class="review" aria-hidden="true"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
-        <div class="review" aria-hidden="true"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
-        <div class="review" aria-hidden="true"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
-        <div class="review" aria-hidden="true"><q>Replace with a real customer review.</q><strong>Customer Name</strong><span>City, Country</span></div>
+  <div class="band" aria-hidden="true">
+    <div>
+      <span>Focus</span><span>Calm</span><span>Energy</span><span>Balance</span><span>Ritual</span><span>Grow</span>
+      <span>Focus</span><span>Calm</span><span>Energy</span><span>Balance</span><span>Ritual</span><span>Grow</span>
+    </div>
+  </div>
+
+  <!-- ================= LINEUP ================= -->
+  <section id="lineup">
+    <div class="wrap">
+      <div class="show-head rv">
+        <div><span class="tag">The lineup</span><h2>Six mushrooms.<br><span>One ritual.</span></h2></div>
+        <p class="lead">Every product is chosen for purity and consistency. Scroll through — then message us to order.</p>
+      </div>
+
+      <div class="show">
+        <div class="stage" aria-hidden="true">
+          <img class="on" src="images/Golden.jpg" alt="">
+          <img src="images/PENISENVY.jpg" alt="">
+          <img src="images/micro.jpg" alt="">
+          <img src="images/DMTVAPE.jpg" alt="">
+          <img src="images/DMT.png" alt="">
+          <img src="images/LSD.jpg" alt="">
+          <div class="hud"><b><span id="cur">01</span><small> / 06</small></b><span id="kind">Focus</span></div>
+        </div>
+
+        <div>
+          <article class="panel on" data-kind="Focus">
+            <img class="m-img" src="images/Golden.jpg" alt="Lion's Mane capsules" loading="lazy">
+            <span class="no">01</span>
+            <h3>Golden Teacher</h3>
+            <p>Associated with reflection and inner awareness..</p>
+            <!-- <div class="facts"><div>
+               <small>Form</small><b>Capsules</b>
+            </div>
+              <div>
+                <small>Best for</small><b>Focus</b>
+              </div>
+              <div>
+                <small>When</small><b>Morning</b>
+              </div>
+              </div> -->
+            <a href="#contact" class="btn">Order via chat <i>→</i></a>
+          </article>
+
+          <article class="panel" data-kind="Calm">
+            <img class="m-img" src="images/PENISENVY.jpg" alt="Reishi extract" loading="lazy">
+            <span class="no">02</span><h3>Penis Envy</h3>
+            <p>Known for deep reflection and inner insight..</p>
+            <!-- <div class="facts"><div>
+               <small>Form</small><b>Extract</b>
+            </div>
+              <div>
+                <small>Best for</small><b>Calm</b>
+              </div>
+              <div>
+                <small>When</small><b>Evening</b>
+              </div>
+              </div> -->
+            <a href="#contact" class="btn">Order via chat <i>→</i></a>
+          </article>
+
+
+          <article class="panel" data-kind="Energy">
+            <img class="m-img" src="images/micro.jpg" alt="Cordyceps powder" loading="lazy">
+            <span class="no">03</span><h3>Microdose Capsules</h3>
+            <p>Convenient, pre-measured capsules for easy use.</p>
+            <!-- <div class="facts"><div>
+               <small>Form</small><b>Capsules</b></div>
+              <div><small>Best for</small><b>Energy</b></div>
+              <div><small>When</small><b>Pre-workout</b>
+              </div>
+            </div> -->
+
+            <a href="#contact" class="btn">Order via chat <i>→</i></a>
+          </article>
+
+
+          <article class="panel" data-kind="Ritual">
+            <img class="m-img" src="images/DMTVAPE.jpg" alt="Chaga tea" loading="lazy">
+            <span class="no">04</span>
+            <h3>DMT Vape</h3>
+            <p>Portable and ready-to-use format.</p>
+            <!-- <div class="facts"><div>
+               <small>Form</small><b>Tea chunks</b></div>
+              <div><small>Best for</small><b>Ritual</b></div><div>
+                <small>When</small><b>Anytime</b></div></div> -->
+            <a href="#contact" class="btn">Order via chat <i>→</i></a>
+          </article>
+
+          <article class="panel" data-kind="Balance">
+            <img class="m-img" src="images/DMT.png" alt="Turkey Tail tincture" loading="lazy">
+            <span class="no">05</span><h3>DMT</h3>
+            <p>Pure crystalline form for experienced users.</p>
+            <!-- <div class="facts"><div>
+               <small>Form</small><b>Tincture</b></div><div><small>Best for</small><b>Balance</b></div><div><small>When</small><b>Daily</b></div></div> -->
+            <a href="#contact" class="btn">Order via chat <i>→</i></a>
+          </article>
+
+          <article class="panel" data-kind="Grow">
+            <img class="m-img" src="images/LSD.jpg" alt="Oyster mushroom grow kit" loading="lazy">
+            <span class="no">06</span><h3>LSD</h3>
+            <p>Create moments that encourage reflection and connection</p>
+            
+            <!-- <div class="facts"><div> -->
+               <!-- <small>Form</small><b>Grow kit</b></div><div>
+              <small>Best for</small><b>Cooking</b></div><div>
+                <small>Harvest</small><b>~2 weeks</b></div> 
+          </div> -->
+            <a href="#contact" class="btn">Order via chat <i>→</i></a>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="center">
-    <div class="container">
-      <h2 class="title" style="margin-bottom:32px">Contact Us</h2>
-      <p>For inquiries, orders, product recommendations and general support, feel free to reach out.</p>
-      <div class="socials">
-        <a href="https://t.me/YOUR_HANDLE" target="_blank" rel="noopener"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm5.6 8.2-1.9 8.9c-.1.6-.5.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.3.3-.6.3l.2-3 5.5-5c.2-.2 0-.3-.4-.1l-6.8 4.3-2.9-.9c-.6-.2-.6-.6.1-.9l11.4-4.4c.5-.2 1 .1.9.9z"/></svg></span>Telegram</a>
-        <a href="https://wa.me/YOUR_NUMBER" target="_blank" rel="noopener"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21l1.6-4.7A9 9 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 1c-1.5-.5-2.5-1.5-3-3l1-1-1-2z" fill="currentColor" stroke="none"/></svg></span>WhatsApp</a>
-        <a href="mailto:hello@reidflora.com"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>Email</a>
+  <!-- ================= HOW ================= -->
+  <section id="how" style="padding-top:40px">
+    <div class="wrap">
+      <div class="rv"><span class="tag">How to order</span><h2>Three steps.<br><span>No fuss.</span></h2></div>
+      <div class="steps">
+        <div class="step rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12a8 8 0 0 1 16 0z"/><path d="M10 12v6a2 2 0 0 0 4 0v-6"/></svg></div><h3>Pick your mushrooms</h3><p>Browse the lineup and choose what fits your routine. Not sure? Just ask.</p></div>
+        <div class="step rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></div><h3>Message us</h3><p>Send your order on Telegram, WhatsApp or email. We confirm details and payment.</p></div>
+        <div class="step rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg></div><h3>Packed &amp; shipped</h3><p>Packed with care, sent discreetly and tracked to your door — worldwide.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHY ================= -->
+  <section class="why">
+    <div class="wrap">
+      <div class="why-top rv">
+        <div><span class="tag">Why Zaccflora</span><h2>Small shop.<br><span>Serious standards.</span></h2></div>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 24C6 13 14 6 24 6s18 7 18 18z" fill="#0a1a12"/><path d="M19 24h10l-2 16a3 3 0 0 1-6 0z" fill="#0a1a12"/><circle cx="16" cy="16" r="2.5" fill="#c6f06a"/><circle cx="27" cy="12" r="2" fill="#c6f06a"/><circle cx="33" cy="19" r="2.5" fill="#c6f06a"/></svg>
+      </div>
+      <div class="why-grid rv">
+        <div><b>01</b><h3>Shipped worldwide</h3><p>We work with trusted logistics partners to reach customers everywhere.</p></div>
+        <div><b>02</b><h3>Reliable fulfilment</h3><p>Orders are processed fast and packed by hand with care.</p></div>
+        <div><b>03</b><h3>Quality first</h3><p>Sourced thoughtfully, with attention to standards and consistency.</p></div>
+        <div><b>04</b><h3>Privacy &amp; trust</h3><p>Customer confidentiality and secure handling are a top priority.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
+    <div class="wrap about">
+      <div class="about-img rv">
+        <img src="images/PENISENVY.jpg" alt="Mushrooms growing in a forest" loading="lazy">
+        <div class="quote">“Fewer things, done properly. That's the whole idea.”</div>
+      </div>
+      <div class="rv">
+        <span class="tag">About us</span>
+        <h2>Grown slow.<br><span>Chosen carefully.</span></h2>
+        <p>At Zaccflora, we believe in the transformative power of nature. Our mission is to provide premium, responsibly sourced mushroom-based wellness products that support mental clarity, creativity, and conscious living.
+
+        Founded with a passion for natural psychedelics and functional mushrooms, we prioritize quality, transparency, and education, helping people explore safe, intentional experiences..</p>
+        <div class="vals"><span>Carefully sourced</span><span>Small batches</span><span>Human support</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= REVIEWS ================= -->
+  <section id="reviews" class="reviews" style="padding-top:40px">
+    <div class="wrap"><h2 class="rv">What people <span>are saying</span></h2></div>
+    <div class="row">
+      <figure class="rev"><div class="stars">★★★★★</div><q>Best Lion's Mane I've tried. Real cognitive support without jitters.</q><footer><span>C</span>Sophie Laurent · Paris, France</footer>
+      </figure>
+      <figure class="rev"><div class="stars">★★★★★</div><q>The Golden Teacher helped me gain clarity during a difficult time. Amazing quality and fast delivery</q><footer><span>C</span>Emma Thompson · UK</footer>
+      </figure>
+      <figure class="rev"><div class="stars">★★★★★</div><q>Microdose capsules are perfect for my daily routine. Subtle but powerful focus boost.</q><footer><span>C</span>James Carter ·Toronto, Canada</footer>
+      </figure>
+      <figure class="rev"><div class="stars">★★★★★</div><q>The experience with Penis Envy was profound. Thank you for the safe access.</q><footer><span>C</span>Olivia Rossi · Milan, Italy</footer>
+      </figure>
+
+       <figure class="rev"><div class="stars">★★★★★</div><q>Discreet packaging and great customer service. Will order again</q><footer><span>C</span>Liam Müller · Berlin, Germany</footer>
+      </figure>
+      
+      
+    </div>
+  
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <!-- <section id="faq">
+    <div class="wrap faq">
+      <div class="rv">
+        <span class="tag">FAQ</span>
+        <h2>Good<br><span>questions.</span></h2>
+        <p class="lead">Can't find your answer? Message us — we usually reply the same day.</p>
+      </div>
+      <div class="rv">
+        <details open><summary>How do I place an order?</summary><p>Pick what you'd like from the lineup, then message us on Telegram, WhatsApp or email. We'll confirm your order, total and shipping details.</p></details>
+        <details><summary>Do you ship to my country?</summary><p>We ship worldwide with trusted logistics partners. Tell us where you are and we'll confirm delivery options and timing.</p></details>
+        <details><summary>How is my order packaged?</summary><p>Every order is packed by hand in plain, secure packaging.</p></details>
+        <details><summary>Which mushroom should I start with?</summary><p>Most people start with Lion's Mane for daytime focus or Reishi for the evening. Message us and we'll help you choose.</p></details>
+        <details><summary>How should I store my products?</summary><p>Keep them sealed in a cool, dry place away from direct sunlight. Grow kits come with their own simple instructions.</p></details>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-card rv">
+        <span class="tag" style="position:relative">Contact</span>
+        <h2>Let's talk<br><span>mushrooms.</span></h2>
+        <p>Orders, recommendations, or just not sure where to start? Message us — a real person replies.</p>
+        <div class="ch">
+          <a href="https://t.me/YOUR_HANDLE" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.8-3.6-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2l-11 6.9-4.7-1.5c-1-.3-1-1 .2-1.5l18.4-7.1c.9-.3 1.6.2 1.3 1.3z"/></svg>Telegram</a>
+          <a href="https://wa.me/YOUR_NUMBER" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21l1.6-4.7A9 9 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 1c-1.5-.5-2.5-1.5-3-3l1-1-1-2z" fill="currentColor" stroke="none"/></svg>WhatsApp</a>
+          <a href="mailto:hello@zaccflora.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</a>
+        </div>
       </div>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="container">
-    <div class="foot">
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
       <div>
-        <img src="images/logo.png" alt="Reidflora logo">
-        <p>Functional mushroom wellness — carefully sourced mushroom products for focus, balance, and conscious living.</p>
+        <a href="#" class="logo"><img src="images/zacc.jpg" alt=""><span>Zaccflora</span></a>
+        <p>Carefully sourced functional mushrooms for focus, calm and everyday ritual.</p>
       </div>
       <div>
-        <h3>Quick Links</h3>
-        <ul><li><a href="#menu">Menu</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li><li><a href="#reviews">Reviews</a></li></ul>
+        <h4>Explore</h4>
+        <ul>
+          <li>
+            <a href="#lineup">Shop</a>
+          </li>
+          <li>
+            <a href="#how">How to order</a>
+          </li>
+          <li>
+            <a href="#about">About</a>
+          </li>
+        </ul>
       </div>
       <div>
-        <h3>Connect</h3>
-        <div class="row"><a href="https://t.me/YOUR_HANDLE">Telegram</a><a href="https://wa.me/YOUR_NUMBER">WhatsApp</a><a href="mailto:hello@reidflora.com">Email</a></div>
+        <h4>Connect</h4>
+        <ul>
+          <li>
+            <a href="https://t.me/zaccwellness">Telegram</a>
+          </li>
+          <li>
+            <a href="https://wa.me/+15805009827">WhatsApp</a>
+          </li>
+          <li>
+            <a href="mailto:zaccwellness@gmail.com">Email</a>
+          </li>
+        </ul>
       </div>
     </div>
-    <p class="copy">© 2026 Reidflora. All rights reserved.</p>
+    <div class="copy"><span>© 2026 Zaccflora. All rights reserved.</span><a href="#">Back to top ↑</a></div>
   </div>
+  <div class="mark" aria-hidden="true">zaccflora</div>
 </footer>
 
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && (e.target.classList.add('in'), io.unobserve(e.target))), { threshold: .12 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // Lineup: swap the sticky image as each product panel reaches the middle of the screen
+  const panels = [...document.querySelectorAll('.panel')];
+  const shots = document.querySelectorAll('.stage img');
+  const cur = document.getElementById('cur'), kind = document.getElementById('kind');
+  const po = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const i = panels.indexOf(e.target);
+    panels.forEach((p, j) => p.classList.toggle('on', j === i));
+    shots.forEach((s, j) => s.classList.toggle('on', j === i));
+    cur.textContent = String(i + 1).padStart(2, '0');
+    kind.textContent = e.target.dataset.kind;
+  }), { rootMargin: '-45% 0px -45% 0px' });
+  panels.forEach(p => po.observe(p));
+
+  // Scroll progress bar + cursor glow
+  const bar = document.querySelector('.progress'), glow = document.querySelector('.glow');
+  addEventListener('scroll', () => {
+    bar.style.transform = `scaleX(${scrollY / (document.documentElement.scrollHeight - innerHeight)})`;
+  }, { passive: true });
+  addEventListener('mousemove', e => { glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`; });
+</script>
 </body>
 </html>
